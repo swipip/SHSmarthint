@@ -33,6 +33,7 @@
 		490048DB25D07BB70010068F /* ModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490048DA25D07BB70010068F /* ModalVC.swift */; };
 		490048E125D0834C0010068F /* ModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490048E025D0834C0010068F /* ModalVC.xib */; };
 		492B439E25D2FFB8002B24A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B439D25D2FFB8002B24A6 /* Constants.swift */; };
+		49CC30FC25D45A19000F22A9 /* SmartHintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CC30FB25D45A19000F22A9 /* SmartHintTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4900481A25D03EF10010068F;
 			remoteInfo = SmartHint;
+		};
+		49A14E9325D4835C0008B3F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4900481225D03EF10010068F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4900485525D03F540010068F;
+			remoteInfo = TestApp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -114,6 +122,7 @@
 		490048DA25D07BB70010068F /* ModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVC.swift; sourceTree = "<group>"; };
 		490048E025D0834C0010068F /* ModalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalVC.xib; sourceTree = "<group>"; };
 		492B439D25D2FFB8002B24A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		49CC30FB25D45A19000F22A9 /* SmartHintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartHintTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +206,7 @@
 		4900482825D03EF10010068F /* SmartHintTests */ = {
 			isa = PBXGroup;
 			children = (
+				49CC30FA25D45A0D000F22A9 /* Manager */,
 				490048BD25D051570010068F /* Views */,
 				4900482B25D03EF10010068F /* Info.plist */,
 			);
@@ -300,6 +310,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		49CC30FA25D45A0D000F22A9 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				49CC30FB25D45A19000F22A9 /* SmartHintTests.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -344,6 +362,7 @@
 			);
 			dependencies = (
 				4900482725D03EF10010068F /* PBXTargetDependency */,
+				49A14E9425D4835C0008B3F2 /* PBXTargetDependency */,
 			);
 			name = SmartHintTests;
 			productName = SmartHintTests;
@@ -519,6 +538,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49CC30FC25D45A19000F22A9 /* SmartHintTests.swift in Sources */,
 				490048BF25D051720010068F /* BannerViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,6 +594,11 @@
 			isa = PBXTargetDependency;
 			target = 4900481A25D03EF10010068F /* SmartHint */;
 			targetProxy = 490048AC25D042D40010068F /* PBXContainerItemProxy */;
+		};
+		49A14E9425D4835C0008B3F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4900485525D03F540010068F /* TestApp */;
+			targetProxy = 49A14E9325D4835C0008B3F2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -722,6 +747,7 @@
 		4900483025D03EF10010068F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -731,6 +757,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SmartHint/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -739,6 +766,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Youmiam.SmartHint;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -748,6 +776,7 @@
 		4900483125D03EF10010068F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -757,6 +786,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SmartHint/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -765,6 +795,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Youmiam.SmartHint;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -777,6 +808,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZK349YW98;
 				INFOPLIST_FILE = SmartHintTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -796,6 +828,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZK349YW98;
 				INFOPLIST_FILE = SmartHintTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -816,6 +849,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZK349YW98;
 				INFOPLIST_FILE = TestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -835,6 +869,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZK349YW98;
 				INFOPLIST_FILE = TestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
