@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalloutsController" customModule="TestApp" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="ogZ-zi-CPQ" id="Qfj-XP-RQy"/>
+                <outlet property="viewOne" destination="3j8-So-Me3" id="ZYG-L5-h1f"/>
+                <outlet property="viewThree" destination="c1Q-a9-6oK" id="vm0-8b-9Kr"/>
+                <outlet property="viewTwo" destination="Ajw-Ho-Alj" id="jkg-UE-JVk"/>
+            </connections>
+        </placeholder>
+        <view contentMode="scaleToFill" id="ogZ-zi-CPQ">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R7h-c4-jVO">
+                    <rect key="frame" x="10" y="752" width="394" height="110"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Krx-Ij-bEM">
+                            <rect key="frame" x="0.0" y="0.0" width="124.5" height="110"/>
+                            <color key="backgroundColor" systemColor="systemPinkColor"/>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="4Qv-yW-NCe" appends="YES" id="5kT-Qh-HGC"/>
+                            </connections>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4kv-96-whk">
+                            <rect key="frame" x="134.5" y="0.0" width="125" height="110"/>
+                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="yQj-f1-Hno" appends="YES" id="lvE-rV-kDY"/>
+                            </connections>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7z-rN-6an">
+                            <rect key="frame" x="269.5" y="0.0" width="124.5" height="110"/>
+                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="0Wh-zM-Fa3" appends="YES" id="Vny-FX-r8g"/>
+                            </connections>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="110" id="8gn-IW-ojX"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="907-2C-cCf"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qf4-eO-HBc">
+                    <rect key="frame" x="10" y="49" width="394" height="110"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3j8-So-Me3">
+                            <rect key="frame" x="0.0" y="0.0" width="124.5" height="110"/>
+                            <color key="backgroundColor" systemColor="systemPinkColor"/>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="Fah-mW-2wG" appends="YES" id="vOf-9p-y5E"/>
+                            </connections>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ajw-Ho-Alj">
+                            <rect key="frame" x="134.5" y="0.0" width="125" height="110"/>
+                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="C32-fr-aw8" appends="YES" id="lUM-c4-8Vv"/>
+                            </connections>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1Q-a9-6oK">
+                            <rect key="frame" x="269.5" y="0.0" width="124.5" height="110"/>
+                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="RaU-Pr-psl" appends="YES" id="9Zj-f8-VaR"/>
+                            </connections>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="110" id="245-Q0-UtY"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="nPh-Go-7Ce"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="nPh-Go-7Ce" firstAttribute="bottom" secondItem="R7h-c4-jVO" secondAttribute="bottom" id="JU9-vZ-sRO"/>
+                <constraint firstItem="R7h-c4-jVO" firstAttribute="leading" secondItem="nPh-Go-7Ce" secondAttribute="leading" constant="10" id="SmW-mf-ixW"/>
+                <constraint firstItem="qf4-eO-HBc" firstAttribute="leading" secondItem="nPh-Go-7Ce" secondAttribute="leading" constant="10" id="cNj-37-IcQ"/>
+                <constraint firstItem="nPh-Go-7Ce" firstAttribute="trailing" secondItem="qf4-eO-HBc" secondAttribute="trailing" constant="10" id="ifP-qw-6fG"/>
+                <constraint firstItem="qf4-eO-HBc" firstAttribute="top" secondItem="nPh-Go-7Ce" secondAttribute="top" constant="5" id="jsH-px-H3n"/>
+                <constraint firstItem="nPh-Go-7Ce" firstAttribute="trailing" secondItem="R7h-c4-jVO" secondAttribute="trailing" constant="10" id="qBP-bk-NGe"/>
+            </constraints>
+            <point key="canvasLocation" x="-257" y="-585"/>
+        </view>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tapGestureRecognizer id="Fah-mW-2wG">
+            <connections>
+                <action selector="didTapViewOne:" destination="-1" id="iOh-Cs-6tk"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="C32-fr-aw8">
+            <connections>
+                <action selector="didTapViewOne:" destination="-1" id="kh7-gJ-4Xu"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="RaU-Pr-psl">
+            <connections>
+                <action selector="didTapViewOne:" destination="-1" id="NSV-ed-p3v"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="4Qv-yW-NCe">
+            <connections>
+                <action selector="didTapViewOne:" destination="-1" id="j8T-jd-kt7"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="yQj-f1-Hno">
+            <connections>
+                <action selector="didTapViewOne:" destination="-1" id="Knt-ag-woO"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="0Wh-zM-Fa3">
+            <connections>
+                <action selector="didTapViewOne:" destination="-1" id="24h-EI-T3y"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
