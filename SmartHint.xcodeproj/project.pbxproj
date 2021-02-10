@@ -33,6 +33,7 @@
 		490048DB25D07BB70010068F /* ModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490048DA25D07BB70010068F /* ModalVC.swift */; };
 		490048E125D0834C0010068F /* ModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490048E025D0834C0010068F /* ModalVC.xib */; };
 		492B439E25D2FFB8002B24A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B439D25D2FFB8002B24A6 /* Constants.swift */; };
+		49CC30FC25D45A19000F22A9 /* SmartHintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CC30FB25D45A19000F22A9 /* SmartHintTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		490048DA25D07BB70010068F /* ModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVC.swift; sourceTree = "<group>"; };
 		490048E025D0834C0010068F /* ModalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalVC.xib; sourceTree = "<group>"; };
 		492B439D25D2FFB8002B24A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		49CC30FB25D45A19000F22A9 /* SmartHintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartHintTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 		4900482825D03EF10010068F /* SmartHintTests */ = {
 			isa = PBXGroup;
 			children = (
+				49CC30FA25D45A0D000F22A9 /* Manager */,
 				490048BD25D051570010068F /* Views */,
 				4900482B25D03EF10010068F /* Info.plist */,
 			);
@@ -298,6 +301,14 @@
 				490048BE25D051720010068F /* BannerViewTests.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		49CC30FA25D45A0D000F22A9 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				49CC30FB25D45A19000F22A9 /* SmartHintTests.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,6 +530,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49CC30FC25D45A19000F22A9 /* SmartHintTests.swift in Sources */,
 				490048BF25D051720010068F /* BannerViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
