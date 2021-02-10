@@ -65,6 +65,13 @@
 			remoteGlobalIDString = 4900481A25D03EF10010068F;
 			remoteInfo = SmartHint;
 		};
+		49A14E9325D4835C0008B3F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4900481225D03EF10010068F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4900485525D03F540010068F;
+			remoteInfo = TestApp;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -355,6 +362,7 @@
 			);
 			dependencies = (
 				4900482725D03EF10010068F /* PBXTargetDependency */,
+				49A14E9425D4835C0008B3F2 /* PBXTargetDependency */,
 			);
 			name = SmartHintTests;
 			productName = SmartHintTests;
@@ -587,6 +595,11 @@
 			target = 4900481A25D03EF10010068F /* SmartHint */;
 			targetProxy = 490048AC25D042D40010068F /* PBXContainerItemProxy */;
 		};
+		49A14E9425D4835C0008B3F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4900485525D03F540010068F /* TestApp */;
+			targetProxy = 49A14E9325D4835C0008B3F2 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -752,6 +765,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Youmiam.SmartHint;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -779,6 +793,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Youmiam.SmartHint;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -830,6 +845,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZK349YW98;
 				INFOPLIST_FILE = TestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -849,6 +865,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZK349YW98;
 				INFOPLIST_FILE = TestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
