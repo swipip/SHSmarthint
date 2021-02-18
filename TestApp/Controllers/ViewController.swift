@@ -20,7 +20,8 @@ class ViewController: UIViewController {
         
     }
     @objc func tapHandler() {
-        addBannerWithButton()
+//        addBannerWithButton()
+        addYellowBanner()
     }
     
     func addBanner() {
@@ -49,10 +50,28 @@ class ViewController: UIViewController {
         }
     }
     
-    func pushCalloutsController () {
+    func pushCalloutsController() {
         let vc = CalloutsController(nibName: "CalloutsController", bundle: nil)
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    func addYellowBanner() {
+        guard let targetView = navigationController?.navigationBar else {return}
+        
+        let hint = Hint(style: .banner(.bottom))
+        hint.message = "hello"
+        hint.animationStyle = .fromTop
+        hint.backgroundColor = .systemGray5
+        hint.buttonsColor = .orange
+        hint.addAction(HintAction(title: "ok", handler: {
+            self.pushCalloutsController()
+        }))
+        hint.addAction(HintAction(title: "ok", handler: {
+            print("hello")
+        }))
+        sh.addHint(hint: hint, to: targetView)
+        
+    }
+    
 }
 
