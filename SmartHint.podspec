@@ -13,9 +13,10 @@ Pod::Spec.new do |spec|
   # spec.social_media_url   = "https://twitter.com/Gautier Billard"
   spec.platform     = :ios
   spec.platform     = :ios, "11.0"
-  spec.source       = { :git => "https://github.com/swipip/SHSmarthint.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/swipip/SHSmarthint.git", :tag => "1.0.0" }
   spec.source_files  = "SmartHint"
   spec.exclude_files = "Classes/Exclude"
+  spec.swift_versions = "5.3"
 
 
 
