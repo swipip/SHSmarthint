@@ -61,7 +61,8 @@ class ViewController: UIViewController {
         let hint = Hint(style: .banner(.bottom))
         hint.message = "hello"
         hint.animationStyle = .fromTop
-        hint.backgroundColor = .systemPurple
+        hint.backgroundColor = .systemGray5
+        hint.buttonsColor = .orange
         hint.addAction(HintAction(title: "ok", handler: {
             self.pushCalloutsController()
         }))

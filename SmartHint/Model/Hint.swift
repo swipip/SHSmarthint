@@ -18,6 +18,11 @@ public enum CallOutPointerStyle {
 //    case dot
 }
 
+/**
+ You can choose between two styles.
+    - A banner which gets displayed right below the targeted view. The banner takes up the entire screen width. Banners have an interactive gesture enabled by default.
+    - A callout which gets displayed right below the targeted view. Callouts are customizable in size and have an optionnal pointer pointing toward the target.
+ */
 public enum HintStyle: Hashable {
     case banner(BannerPosition)
     case callout(CallOutPointerStyle? = .triangle)
@@ -56,16 +61,48 @@ public enum AnimationStyle {
 }
 
 public class Hint {
+    
     var style: HintStyle = .callout(.triangle)
+    
+    /**
+     The entry and exit animation style. Exit style if the invert of the enry style. Ex: if you choose from top as an entry animation, the view will be dismissed sliding upward.
+     */
     public var animationStyle: AnimationStyle = .fade
+    
+    /**
+     Actions available with you hint view. Adding an action adds a button in the view. One button takes the entire with, two buttons the width is halved and three actions or more the buttons simply get stacked
+     */
     public var actions: [HintAction] = []
+    
+    ///The message which gets displayed in the hint view
     public var message: String?
+    
+    ///The view's background color
     public var backgroundColor: UIColor? = .systemGray4
+    
+    ///By default the color is the same as the background color with an alpha value of 0.2
+    public var buttonsColor: UIColor?
+    
+    ///By default set to label
     public var textColor: UIColor? = .label
+    
+    ///The margin between the targeted view and the hint view.
     public var marginFromView: CGFloat = 5
+    
+    ///The requested size of the hint view. Note that in the case of banners only the height is taken into acount. When banner have interactiveGesture enabled view 'expended' size of the view is computed automaticaly.
     public var size: CGSize = CGSize(width: 220, height: 60)
+    
+    ///The image to display on the left hand side of banners. Callouts don't support images.
     public var image: UIImage?
+    /**
+     An optionnal timeout which defines a life expectancy for the view. When time is up, the view dissapears automaticaly with no further user action.
+     */
+    
     public var timeOut: TimeInterval?
+    
+    /**
+     Only apply to banners. Banners can hide their buttons and only reveal them upon a drag down on the view. Set this value to false if you want to see button by default.
+     */
     public var enableInteractiveGestureForActions = true
         
     var hasActions:Bool {

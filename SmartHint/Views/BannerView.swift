@@ -304,6 +304,7 @@ extension BannerView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let action = hint.actions[indexPath.item]
         cell.messageLabel.text = action.title
         cell.messageLabel.textColor = hint.textColor
+        cell.backgroundColor = hint.buttonsColor
         
         return cell
     }
