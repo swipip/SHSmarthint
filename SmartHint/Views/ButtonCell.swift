@@ -18,7 +18,6 @@ class BannerViewButtonCell:UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.systemGray4.withAlphaComponent(0.2)
         layer.cornerRadius = K.getValue(for: .buttonsCornerRadius)
         addMessageLabel()
     }

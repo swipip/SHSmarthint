@@ -26,6 +26,16 @@ class BannerViewTests: XCTestCase {
         }
     }
     
+    func test_ButtonDefaultColor() {
+        hint.backgroundColor = .orange
+        hint.addAction(HintAction(title:""))
+        let sut = BannerView(builder: builder)
+        
+        let cell = sut.collectionView(sut.collectionView, cellForItemAt: IndexPath(item: 0, section: 0)) as! BannerViewButtonCell
+        
+        XCTAssertNotNil(cell.backgroundColor)
+    }
+    
     func test_ButtonsColor() {
         hint.buttonsColor = .orange
         hint.addAction(HintAction(title: ""))
