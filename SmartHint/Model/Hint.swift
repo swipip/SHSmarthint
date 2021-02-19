@@ -26,12 +26,15 @@ public enum CallOutPointerStyle {
 public enum HintStyle: Hashable {
     case banner(BannerPosition)
     case callout(CallOutPointerStyle? = .triangle)
+    case alert
     var associatedValue: Any? {
         switch self {
         case .banner(let position):
             return position
         case .callout(let pointerType):
             return pointerType
+        case .alert:
+            return nil
         }
     }
 }
@@ -73,6 +76,9 @@ public class Hint {
      Actions available with you hint view. Adding an action adds a button in the view. One button takes the entire with, two buttons the width is halved and three actions or more the buttons simply get stacked
      */
     public var actions: [HintAction] = []
+    
+    ///Title applies only to alert views
+    public var title: String?
     
     ///The message which gets displayed in the hint view
     public var message: String?

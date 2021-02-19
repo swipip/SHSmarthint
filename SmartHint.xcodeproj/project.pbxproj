@@ -24,8 +24,6 @@
 		4900486825D03F560010068F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4900486625D03F560010068F /* LaunchScreen.storyboard */; };
 		4900487325D03F560010068F /* TestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900487225D03F560010068F /* TestAppTests.swift */; };
 		4900487E25D03F560010068F /* TestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900487D25D03F560010068F /* TestAppUITests.swift */; };
-		490048AA25D042D40010068F /* SmartHint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4900481B25D03EF10010068F /* SmartHint.framework */; };
-		490048AB25D042D40010068F /* SmartHint.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4900481B25D03EF10010068F /* SmartHint.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		490048BF25D051720010068F /* BannerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490048BE25D051720010068F /* BannerViewTests.swift */; };
 		490048C925D05B4B0010068F /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490048C825D05B4B0010068F /* ButtonCell.swift */; };
 		490048CF25D05BA40010068F /* CalloutsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490048CE25D05BA40010068F /* CalloutsController.swift */; };
@@ -34,6 +32,10 @@
 		490048E125D0834C0010068F /* ModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490048E025D0834C0010068F /* ModalVC.xib */; };
 		492B439E25D2FFB8002B24A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B439D25D2FFB8002B24A6 /* Constants.swift */; };
 		49CC30FC25D45A19000F22A9 /* SmartHintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CC30FB25D45A19000F22A9 /* SmartHintTests.swift */; };
+		49EB24FF25DF0E59007117DE /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB24FE25DF0E59007117DE /* AlertView.swift */; };
+		49EB250625DF0E79007117DE /* AlertViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB250525DF0E79007117DE /* AlertViewTests.swift */; };
+		49EB250C25DF1365007117DE /* SmartHint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4900481B25D03EF10010068F /* SmartHint.framework */; };
+		49EB250D25DF1365007117DE /* SmartHint.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4900481B25D03EF10010068F /* SmartHint.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,13 +77,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		490048AE25D042D40010068F /* Embed Frameworks */ = {
+		49EB250E25DF1365007117DE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				490048AB25D042D40010068F /* SmartHint.framework in Embed Frameworks */,
+				49EB250D25DF1365007117DE /* SmartHint.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +125,8 @@
 		490048E025D0834C0010068F /* ModalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalVC.xib; sourceTree = "<group>"; };
 		492B439D25D2FFB8002B24A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		49CC30FB25D45A19000F22A9 /* SmartHintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartHintTests.swift; sourceTree = "<group>"; };
+		49EB24FE25DF0E59007117DE /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		49EB250525DF0E79007117DE /* AlertViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				490048AA25D042D40010068F /* SmartHint.framework in Frameworks */,
+				49EB250C25DF1365007117DE /* SmartHint.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +242,7 @@
 				4900483B25D03F1F0010068F /* BannerView.swift */,
 				4900483925D03F1F0010068F /* Callout.swift */,
 				490048C825D05B4B0010068F /* ButtonCell.swift */,
+				49EB24FE25DF0E59007117DE /* AlertView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				490048BE25D051720010068F /* BannerViewTests.swift */,
+				49EB250525DF0E79007117DE /* AlertViewTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -376,7 +382,7 @@
 				4900485225D03F540010068F /* Sources */,
 				4900485325D03F540010068F /* Frameworks */,
 				4900485425D03F540010068F /* Resources */,
-				490048AE25D042D40010068F /* Embed Frameworks */,
+				49EB250E25DF1365007117DE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -525,6 +531,7 @@
 			files = (
 				4900484125D03F1F0010068F /* BannerView.swift in Sources */,
 				4900484025D03F1F0010068F /* Hint.swift in Sources */,
+				49EB24FF25DF0E59007117DE /* AlertView.swift in Sources */,
 				4900484225D03F1F0010068F /* HintAction.swift in Sources */,
 				4900483F25D03F1F0010068F /* Callout.swift in Sources */,
 				4900483E25D03F1F0010068F /* SmartHint.swift in Sources */,
@@ -540,6 +547,7 @@
 			files = (
 				49CC30FC25D45A19000F22A9 /* SmartHintTests.swift in Sources */,
 				490048BF25D051720010068F /* BannerViewTests.swift in Sources */,
+				49EB250625DF0E79007117DE /* AlertViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,7 +682,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -732,7 +740,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -12,6 +12,7 @@ class BannerViewButtonCell:UICollectionViewCell {
     
     lazy var messageLabel: UILabel = {
         let label = UILabel()
+        label.textColor = K.getValue(for: .buttonsTitleColor)
         label.textAlignment = .center
         return label
     }()

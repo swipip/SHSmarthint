@@ -231,6 +231,14 @@ public class SmartHint {
             hint.enableInteractiveGestureForActions = false
             guard let builder = getCallout(hint, to: target,at: targetPoint) else {return}
             view = Callout(with: builder)
+        case .alert:
+            guard let controller = controller else {return}
+            let width:CGFloat = K.getValue(for: .alertWidth) - 20
+            let height = AlertView.getHestimatedHeight(hint)
+            let xOrigin = (controller.view.frame.width - width)/2
+            let yOrigin = (controller.view.safeAreaLayoutGuide.layoutFrame.height - height)/2
+            let builder = HintBuilder(hint: hint, hintRect: CGRect(x: xOrigin, y: yOrigin, width: width, height: height), pointerHorizontalPosition: 0)
+            view = AlertView(builder)
         }
 
         guard let safeView = view else {return}

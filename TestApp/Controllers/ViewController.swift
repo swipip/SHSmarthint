@@ -56,21 +56,24 @@ class ViewController: UIViewController {
     }
 
     func addYellowBanner() {
-        guard let targetView = navigationController?.navigationBar else {return}
-        
-        let hint = Hint(style: .banner(.bottom))
-        hint.message = "hello"
+        sh.setDefaultValue(CGFloat(12), forKey: .hintViewCornerRadius)
+        sh.setDefaultValue(CGFloat(8), forKey: .buttonsCornerRadius)
+        let hint = Hint(style: .alert)
+        hint.backgroundColor = .white
+        hint.buttonsColor = .systemGray6
+//        hint.image = UIImage(systemName: "checkmark.circle.fill")
+        hint.title = "Recette ajoutée au menu en cours"
+        hint.message = "Tu viens d'ajouter la recette à ton menu en cours. Retrouve là à tout moment dans l'éditeur."
         hint.animationStyle = .fromTop
-        hint.backgroundColor = .systemGray5
-        hint.buttonsColor = .orange
-        hint.addAction(HintAction(title: "ok", handler: {
-            self.pushCalloutsController()
+        hint.addAction(HintAction(title: "voir", handler: {
+            self.sh.dismissAllHints(animated: true)
+            self.addBannerWithButton()
         }))
-        hint.addAction(HintAction(title: "ok", handler: {
-            print("hello")
-        }))
-        sh.addHint(hint: hint, to: targetView)
-        
+//        hint.addAction(HintAction(title: "test", handler: {
+//            self.sh.dismissAllHints(animated: true)
+//            self.addBannerWithButton()
+//        }))
+        sh.addHint(hint: hint, at: .zero)
     }
     
 }

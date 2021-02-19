@@ -325,10 +325,9 @@ extension BannerView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
 }
 
 extension UILabel {
-    func calculateMaxLines() -> Int {
-        let maxSize = CGSize(width: frame.size.width, height: CGFloat(Float.infinity))
-        let label = UILabel(frame: CGRect(origin: .zero, size: maxSize))
-        label.numberOfLines = 0
+    func calculateMaxLines(_ width: CGFloat? = nil) -> Int {
+        let width = width ?? self.frame.size.width
+        let maxSize = CGSize(width: width - 20, height: CGFloat(Float.infinity))
         let charSize = font.lineHeight
         let text = (self.text ?? "") as NSString
         let font = self.font ?? UIFont.systemFont(ofSize: 17)

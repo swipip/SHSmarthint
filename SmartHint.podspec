@@ -3,7 +3,7 @@ Pod::Spec.new do |spec|
 
 
   spec.name         = "SmartHint"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.1"
   spec.summary      = "Hightlight specific actions in your app with banners and callout"
   spec.description  = "SmartHint lets you add banners and callout bellow any view in your hierarchy. Ideal for first walkthrough and hint for complex tasks"
   spec.homepage     = "https://github.com/swipip/SHSmarthint"
@@ -11,11 +11,10 @@ Pod::Spec.new do |spec|
   spec.license      = "MIT"
   spec.author             = { "Gautier Billard" => "gautier.billard@gmail.com" }
   # spec.social_media_url   = "https://twitter.com/Gautier Billard"
-  spec.platform     = :ios
-  spec.platform     = :ios, "11.0"
-  spec.source       = { :git => "https://github.com/swipip/SHSmarthint.git", :tag => "1.0.0" }
-  spec.source_files  = "SmartHint"
-  spec.exclude_files = "Classes/Exclude"
+  spec.platform     = :ios, "13.0"
+  spec.source       = { :git => "https://github.com/swipip/SHSmarthint.git", :tag => "1.0.1" }
+  spec.source_files  = "SmartHint/**/*"
+  spec.exclude_files = "SmartHint/**/*.plist"
   spec.swift_versions = "5.3"
 
 

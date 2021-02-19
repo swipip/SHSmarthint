@@ -9,20 +9,28 @@ import UIKit
 public enum ConstantName {
     case buttonsHeight
     case buttonsCornerRadius
+    case buttonsTitleColor
     case hintViewCornerRadius
     case interactionAnimationSpeed
     case showAnimationSpeed
+    case alertWidth
+    case messageFont
+    case messageTextColor
+    case titleFont
 }
 struct K {
-    
-    
     
     static var constants: [ConstantName:Any] = [
         .buttonsHeight:CGFloat(40),
         .buttonsCornerRadius:CGFloat(5),
+        .buttonsTitleColor:UIColor.label,
         .hintViewCornerRadius:CGFloat(5),
         .interactionAnimationSpeed:Double(0.2),
-        .showAnimationSpeed:Double(0.3)
+        .showAnimationSpeed:Double(0.3),
+        .alertWidth:CGFloat(260),
+        .messageFont:UIFont.systemFont(ofSize: 17,weight: .regular),
+        .messageTextColor:UIColor.label,
+        .titleFont:UIFont.systemFont(ofSize: 18,weight: .semibold)
     ]
     
     static func getValue<T>(for constant: ConstantName) -> T {
