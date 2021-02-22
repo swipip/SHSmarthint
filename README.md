@@ -8,7 +8,7 @@
 Add the framework to your project with the following command.
 
 ```ruby
-pod 'SmartHint', '~> 1.0.0'
+pod 'SmartHint', '~> 1.0.1'
 ```
 
 ## How to use SH core features
@@ -47,3 +47,43 @@ sh.addHint(hint: Hint(style: .callout(.triangle), message: "Hey this is a callou
 }
 ```
 An optional completion argument is triggered in reponse to a tap event on the callout.
+
+## Build custom hint
+
+You can create custom hints by using the Hint object's properties
+
+### Custom Hint
+
+Change core hint properties like background color, or text color, message or presentation animation style like this:
+
+```swift
+let hint = Hint(style: .banner(.bottom))
+hint.backgroundColor = .white
+hint.buttonsColor = .systemGray6
+hint.message = "This is my banner's message"
+hint.animationStyle = .fromTop
+```
+### Adding buttons
+
+To add a button you simply need to pass a completion handler to the addAction(_ action: HintAction) method. Let's say you need to add two buttons:
+
+```swift
+let hint = Hint(style: .banner(.bottom))
+hint.addAction(HintAction(title: "first button", handler: {
+    //Do something when the first buttn gets tapped
+}))
+hint.addAction(HintAction(title: "second button", handler: {
+    //Do something when the second button gets tapped
+}))
+```
+
+### Modifying core properties
+
+Should you need to update some of HintViews core properties to fit the layout style to you app's, you cna do using the setDefaultValue(_ value: Any, forKey key: ConstantName) method provided by the SmartHint viewController's extension. 
+
+```swift
+sh.setDefaultValue(CGFloat(12), forKey: .hintViewCornerRadius)
+sh.setDefaultValue(CGFloat(8), forKey: .buttonsCornerRadius)
+```
+
+Note that you MUST indicate to right type for the value your are modifying otherwise the module will raise an exception. So for instance provide a CGFloat for view layout related values and a Double for the animation timing for instance
