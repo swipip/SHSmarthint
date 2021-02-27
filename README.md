@@ -4,6 +4,12 @@
 
 [![Build Status](https://travis-ci.com/swipip/SHSmarthint.svg?branch=main)](https://travis-ci.com/swipip/SHSmarthint.svg?branch=main})
 
+## What is it ?
+
+SmartHint is a framework that lets you add banners, callouts or alerts to point out an action to a user.
+All this views are interactive, customizable and easy to implement with simple properties and callbacks to respond to touch events and button presses.
+SmartHint is much easier to implement than standard UIKit equivalents, much more flexible and customizable as well for simple tasks.
+
 ## Basic integration
 
 Add the framework to your project with the following command.
