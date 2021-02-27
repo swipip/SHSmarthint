@@ -16,7 +16,6 @@ public enum ConstantName {
     case alertWidth
     case alertSpacing
     case messageFont
-    case messageTextColor
     case titleFont
 }
 struct K {
@@ -31,7 +30,6 @@ struct K {
         .alertWidth:CGFloat(260),
         .alertSpacing:CGFloat(10),
         .messageFont:UIFont.systemFont(ofSize: 17,weight: .regular),
-        .messageTextColor:UIColor.label,
         .titleFont:UIFont.systemFont(ofSize: 18,weight: .semibold)
     ]
     

@@ -77,6 +77,9 @@ public class Hint {
     
     var style: HintStyle = .callout(.triangle)
     
+    ///Use this callback property to retreive the actual displayed view. 
+    public var hintView: ((_ view: UIView)->())?
+    
     /**
      The entry and exit animation style. Exit style if the invert of the enry style. Ex: if you choose from top as an entry animation, the view will be dismissed sliding upward.
      */
@@ -122,11 +125,16 @@ public class Hint {
     public var enableInteractiveGestureForActions = true
         
     /**
-    Only applies to alerts. Decide whether you want to display a textfield in the alert view. Default value for thhis parameter is false
+    Only applies to alerts. Decide whether you want to display a textfield in the alert view. The callback gives you access to the textField on which you can assign a delegate .Default value for thhis parameter is false
      */
     public var hasTextField:((_ textField: UITextField)->Bool)? = { textField in
         false
     }
+    
+    /**
+     Defines wether the hint view is modal or not. When set to true the user can't dismiss the view by tapping away.
+     */
+    public var isModal = false
     
     var hasActions:Bool {
         if self.actions.count > 0 {

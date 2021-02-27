@@ -56,6 +56,23 @@ class ViewController: UIViewController {
     }
 
     func addYellowBanner() {
+        let hint = Hint(style: .alert)
+        hint.message = "Hey this is a modal banner !"
+        hint.addAction(HintAction(title: "Understood", handler: {
+            self.sh.dismissAllHints(animated: true)
+        }))
+        hint.addAction(HintAction(title: "Tell me more", handler: {
+            self.sh.dismissAllHints(animated: true)
+        }))
+        hint.image = UIImage(systemName: "info.circle.fill")
+        hint.buttonsColor = UIColor.white.withAlphaComponent(0.3)
+        hint.textColor = .white
+        hint.backgroundColor = .systemPink
+        hint.isModal = true
+        hint.animationStyle = .fromTop
+        sh.addHint(hint: hint, at: CGPoint(x: 0, y: 50))
+    }
+    func addAlert() {
         sh.setDefaultValue(CGFloat(12), forKey: .hintViewCornerRadius)
         sh.setDefaultValue(CGFloat(8), forKey: .buttonsCornerRadius)
         sh.setDefaultValue(CGFloat(300), forKey: .alertWidth)
@@ -65,21 +82,20 @@ class ViewController: UIViewController {
         let hint = Hint(style: .alert)
         hint.backgroundColor = .white
         hint.buttonsColor = .systemGray6
-        
         hint.hasTextField = { [weak self] textField in
             textField.delegate = self
             textField.placeholder = "adresse email"
             return true
         }
+        hint.isModal = true
         hint.title = "Alert"
         hint.message = "This is my banner's message"
-        hint.animationStyle = .fromTop
+        hint.animationStyle = .fade
         hint.addAction(HintAction(title: "changer le mot de passe", handler: {
-            //Do something when the first buttn gets tapped
+            self.sh.dismissAllHints(animated: true)
         }))
         sh.addHint(hint: hint, to: target)
     }
-    //"Hey you've just created a yellow banner with buttons"
 }
 
 extension ViewController: UITextFieldDelegate {

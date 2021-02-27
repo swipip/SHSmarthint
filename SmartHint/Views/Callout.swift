@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol HintView: UIView {
-    var messageLabel: UILabel {get set}
-    var collectionView: UICollectionView {get set}
-    var hint: Hint {get set}
-    var didTapView:(()->())? {get set}
-}
 
 internal class Callout: UIView, HintView {
     

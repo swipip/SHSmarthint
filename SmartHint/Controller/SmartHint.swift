@@ -17,6 +17,7 @@ public class SmartHint {
         }
     }
     
+    private var modalController: UIViewController?
     weak var controller: UIViewController?
     
     init(_ controller: UIViewController) {
@@ -31,14 +32,25 @@ public class SmartHint {
     private let animationSpeed: Double = K.getValue(for: .showAnimationSpeed)
     // MARK: Hint view life cycle
     
+    private func addModalLayerIfNeeded(_ completion: @escaping()->()) {
+        guard hint?.isModal ?? false else {completion();return}
+        let vc = UIViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        controller?.present(vc, animated: false, completion: {
+            self.modalController = vc
+            completion()
+        })
+        
+    }
+    
     fileprivate func addHintToController(_ view: UIView) {
+        let controller = modalController == nil ? self.controller : modalController
         var controllerView: UIView
         if let nav = controller?.navigationController {
             controllerView = nav.view
         }else{
             controllerView = controller?.view ?? UIView()
         }
-        
         controllerView.addSubview(view)
     }
     
@@ -65,7 +77,7 @@ public class SmartHint {
         }
         
         UIView.animate(withDuration: animationSpeed) {
-            view.transform = CGAffineTransform(translationX: 0, y: 0)
+            view.transform = .identity
             view.alpha = 1
         }
     }
@@ -73,6 +85,7 @@ public class SmartHint {
     private func dismissHint(_ view: HintView, animated: Bool,enforceStyle: AnimationStyle? = nil, delayAlpha: Bool = false,_ completion:(()->())? = nil) {
         if animated == false {
             removeHint(self)
+            self.modalController?.dismiss(animated: false, completion: nil)
         }else{
             if let hint = hint {
                 var offset:CGPoint = .zero
@@ -88,11 +101,13 @@ public class SmartHint {
                     offset = CGPoint(x: (view.frame.width + hint.marginFromView), y: 0)
                 case .noAnimation:
                     view.alpha = 0
+                    self.modalController?.dismiss(animated: false, completion: nil)
                     completion?()
                 default:
                     UIView.animate(withDuration: animationSpeed) {
                         view.alpha = 0
                     } completion: { (_) in
+                        self.modalController?.dismiss(animated: false, completion: nil)
                         completion?()
                     }
                     return
@@ -105,6 +120,7 @@ public class SmartHint {
                     }
                 } completion: { (_) in
                     if delayAlpha == false {
+                        self.modalController?.dismiss(animated: false, completion: nil)
                         completion?()
                     }
                 }
@@ -112,6 +128,7 @@ public class SmartHint {
                     UIView.animate(withDuration: animationSpeed, delay: 0.2) {
                         view.alpha = 0
                     } completion: { _ in
+                        self.modalController?.dismiss(animated: false, completion: nil)
                         completion?()
                     }
                 }
@@ -147,7 +164,6 @@ public class SmartHint {
         
         let width = UIScreen.main.bounds.size.width - hint.marginFromView*2
         let rect = CGRect(origin: origin, size: CGSize(width: width, height: hint.height))
-                
         return HintBuilder(hint: hint, hintRect: rect, pointerHorizontalPosition: 0)
     }
     
@@ -214,8 +230,6 @@ public class SmartHint {
         
     }
     
-
-    
     private func setUpHint(hint: Hint, to target: UIView?, at targetPoint: CGPoint?) {
         self.hint = hint
         
@@ -226,6 +240,9 @@ public class SmartHint {
         case .banner:
             guard let builder = getBanner(hint, to: target,at: targetPoint) else {return}
             view = BannerView(builder: builder)
+            (view as! BannerView).didDismissView = {[weak self] in
+                self?.dismissHint(view!, animated: true)
+            }
         case .callout:
             let hint = hint
             hint.enableInteractiveGestureForActions = false
@@ -243,7 +260,9 @@ public class SmartHint {
 
         guard let safeView = view else {return}
         
-        if let existingBanner = checkIfExistingBannerAtCoordinates(safeView.frame) {
+        hint.hintView?(safeView)
+        
+        if let existingBanner = checkForExistingHintView(safeView.frame) {
             delayForDismissalOfExisting = 0.1
             guard let view = existingBanner.hintView else {return}
             dismissHint(view,
@@ -261,9 +280,11 @@ public class SmartHint {
         
         hintView = safeView
         
-        addHintToController(safeView)
-        show(hint: hint, safeView, animated: true,delay: delayForDismissalOfExisting)
-        addAutomaticDismissalIfNeeded(hint, view: safeView)
+        addModalLayerIfNeeded() {
+            self.addHintToController(safeView)
+            self.show(hint: hint, safeView, animated: true,delay: delayForDismissalOfExisting)
+            self.addAutomaticDismissalIfNeeded(hint, view: safeView)
+        }
         
         safeView.didTapView = { [weak self] in
             self?.hintTapped?()
@@ -287,13 +308,10 @@ public class SmartHint {
             view.didExpandView = { [weak self] in
                 self?.autoDimissTimer?.invalidate()
             }
-            view.didDismissView = {[weak self] in
-                self?.dismissHint(view, animated: true)
-            }
         }
     }
     
-    private func checkIfExistingBannerAtCoordinates(_ rect: CGRect) -> SmartHint? {
+    private func checkForExistingHintView(_ rect: CGRect) -> SmartHint? {
         let instances = SmartHint.instances
         for instance in instances {
             if instance.hintView?.frame.origin == rect.origin {

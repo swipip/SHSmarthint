@@ -31,6 +31,7 @@
 		490048DB25D07BB70010068F /* ModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490048DA25D07BB70010068F /* ModalVC.swift */; };
 		490048E125D0834C0010068F /* ModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490048E025D0834C0010068F /* ModalVC.xib */; };
 		492B439E25D2FFB8002B24A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B439D25D2FFB8002B24A6 /* Constants.swift */; };
+		498AF92925EADC430044FB48 /* HintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498AF92825EADC430044FB48 /* HintView.swift */; };
 		49CC30FC25D45A19000F22A9 /* SmartHintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CC30FB25D45A19000F22A9 /* SmartHintTests.swift */; };
 		49EB24FF25DF0E59007117DE /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB24FE25DF0E59007117DE /* AlertView.swift */; };
 		49EB250625DF0E79007117DE /* AlertViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB250525DF0E79007117DE /* AlertViewTests.swift */; };
@@ -124,6 +125,7 @@
 		490048DA25D07BB70010068F /* ModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVC.swift; sourceTree = "<group>"; };
 		490048E025D0834C0010068F /* ModalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalVC.xib; sourceTree = "<group>"; };
 		492B439D25D2FFB8002B24A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		498AF92825EADC430044FB48 /* HintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintView.swift; sourceTree = "<group>"; };
 		49CC30FB25D45A19000F22A9 /* SmartHintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartHintTests.swift; sourceTree = "<group>"; };
 		49EB24FE25DF0E59007117DE /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		49EB250525DF0E79007117DE /* AlertViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewTests.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				4900483925D03F1F0010068F /* Callout.swift */,
 				490048C825D05B4B0010068F /* ButtonCell.swift */,
 				49EB24FE25DF0E59007117DE /* AlertView.swift */,
+				498AF92825EADC430044FB48 /* HintView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4900484125D03F1F0010068F /* BannerView.swift in Sources */,
+				498AF92925EADC430044FB48 /* HintView.swift in Sources */,
 				4900484025D03F1F0010068F /* Hint.swift in Sources */,
 				49EB24FF25DF0E59007117DE /* AlertView.swift in Sources */,
 				4900484225D03F1F0010068F /* HintAction.swift in Sources */,

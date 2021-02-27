@@ -34,6 +34,7 @@ class AlertView: UIView, HintView {
     }()
     lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = hint.textColor
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = K.getValue(for: .titleFont)
@@ -41,7 +42,7 @@ class AlertView: UIView, HintView {
     }()
     lazy var messageLabel: UILabel = {
         let label = UILabel()
-        label.textColor = K.getValue(for: .messageTextColor)
+        label.textColor = hint.textColor
         label.font = K.getValue(for: .messageFont)
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -165,6 +166,7 @@ extension AlertView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerViewButtonCell.identifier, for: indexPath) as! BannerViewButtonCell
         cell.messageLabel.text = hint.actions[indexPath.item].title
+        cell.messageLabel.textColor = hint.textColor
         cell.backgroundColor = hint.buttonsColor ?? UIColor.white.withAlphaComponent(0.2)
         return cell
     }
