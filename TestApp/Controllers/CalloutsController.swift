@@ -66,6 +66,7 @@ class CalloutsController: UIViewController {
             self?.sh.dismissAllHints(animated: true)
         }))
         hint.backgroundColor = .systemIndigo
+        hint.buttonsColor = UIColor.white.withAlphaComponent(0.3)
         hint.textColor = .white
         
         sh.addHint(hint: hint, to: view) { [weak self] in

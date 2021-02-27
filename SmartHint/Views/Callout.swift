@@ -113,13 +113,13 @@ internal class Callout: UIView, HintView {
             if !triangleOnTop {
                 path.move(to: CGPoint(x: minX, y: minY))
                 path.addLine(to: CGPoint(x: head - 15, y: minY))
-                path.addArc(tangent1End: CGPoint(x: head, y: 0), tangent2End: CGPoint(x: head + 15, y: minY), radius: cornerRadius)
+                path.addArc(tangent1End: CGPoint(x: head, y: 0), tangent2End: CGPoint(x: head + 15, y: minY), radius: min(5,cornerRadius))
                 path.addLine(to: CGPoint(x: head + 15, y: minY))
                 
             }else{
                 path.move(to: CGPoint(x: minX, y: height))
                 path.addLine(to: CGPoint(x: head - 15, y: height))
-                path.addArc(tangent1End: CGPoint(x: head, y: maxY), tangent2End: CGPoint(x: head + 15, y: maxY), radius: cornerRadius)
+                path.addArc(tangent1End: CGPoint(x: head, y: maxY), tangent2End: CGPoint(x: head + 15, y: maxY), radius: min(5,cornerRadius))
                 path.addLine(to: CGPoint(x: head + 15, y: height))
             }
         case .noPointer:

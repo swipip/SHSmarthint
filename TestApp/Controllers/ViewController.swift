@@ -21,7 +21,8 @@ class ViewController: UIViewController {
     }
     @objc func tapHandler() {
 //        addBannerWithButton()
-        addYellowBanner()
+//        addYellowBanner()
+        addAlert()
     }
     
     func addBanner() {
@@ -76,23 +77,25 @@ class ViewController: UIViewController {
         sh.setDefaultValue(CGFloat(12), forKey: .hintViewCornerRadius)
         sh.setDefaultValue(CGFloat(8), forKey: .buttonsCornerRadius)
         sh.setDefaultValue(CGFloat(300), forKey: .alertWidth)
-        sh.setDefaultValue(CGFloat(20), forKey: .alertSpacing)
+        sh.setDefaultValue(CGFloat(10), forKey: .alertSpacing)
         
         guard let target = navigationController?.navigationBar else {return}
         let hint = Hint(style: .alert)
+        hint.image = UIImage(named: "man")
         hint.backgroundColor = .white
         hint.buttonsColor = .systemGray6
         hint.hasTextField = { [weak self] textField in
             textField.delegate = self
             textField.placeholder = "adresse email"
+            textField.keyboardType = .emailAddress
             return true
         }
         hint.isModal = true
-        hint.title = "Alert"
-        hint.message = "This is my banner's message"
+        hint.message = "Mot de passe oublié"
         hint.animationStyle = .fade
         hint.addAction(HintAction(title: "changer le mot de passe", handler: {
             self.sh.dismissAllHints(animated: true)
+            self.pushCalloutsController()
         }))
         sh.addHint(hint: hint, to: target)
     }
