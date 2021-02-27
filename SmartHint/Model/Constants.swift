@@ -14,6 +14,7 @@ public enum ConstantName {
     case interactionAnimationSpeed
     case showAnimationSpeed
     case alertWidth
+    case alertSpacing
     case messageFont
     case messageTextColor
     case titleFont
@@ -28,6 +29,7 @@ struct K {
         .interactionAnimationSpeed:Double(0.2),
         .showAnimationSpeed:Double(0.3),
         .alertWidth:CGFloat(260),
+        .alertSpacing:CGFloat(10),
         .messageFont:UIFont.systemFont(ofSize: 17,weight: .regular),
         .messageTextColor:UIColor.label,
         .titleFont:UIFont.systemFont(ofSize: 18,weight: .semibold)

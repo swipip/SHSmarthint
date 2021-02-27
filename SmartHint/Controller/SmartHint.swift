@@ -236,7 +236,7 @@ public class SmartHint {
             let width:CGFloat = K.getValue(for: .alertWidth) - 20
             let height = AlertView.getHestimatedHeight(hint)
             let xOrigin = (controller.view.frame.width - width)/2
-            let yOrigin = (controller.view.safeAreaLayoutGuide.layoutFrame.height - height)/2
+            let yOrigin = (controller.view.frame.height - height)/2
             let builder = HintBuilder(hint: hint, hintRect: CGRect(x: xOrigin, y: yOrigin, width: width, height: height), pointerHorizontalPosition: 0)
             view = AlertView(builder)
         }

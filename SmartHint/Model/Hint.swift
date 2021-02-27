@@ -65,6 +65,16 @@ public enum AnimationStyle {
 
 public class Hint {
     
+    lazy var textField: UITextField = {
+        let field = UITextField()
+        field.tintColor = self.textColor
+        field.backgroundColor = self.buttonsColor
+        field.textAlignment = .center
+        field.clipsToBounds = true
+        field.layer.cornerRadius = K.getValue(for: .buttonsCornerRadius)
+        return field
+    }()
+    
     var style: HintStyle = .callout(.triangle)
     
     /**
@@ -100,10 +110,10 @@ public class Hint {
     
     ///The image to display on the left hand side of banners. Callouts don't support images.
     public var image: UIImage?
+    
     /**
      An optionnal timeout which defines a life expectancy for the view. When time is up, the view dissapears automaticaly with no further user action.
      */
-    
     public var timeOut: TimeInterval?
     
     /**
@@ -111,6 +121,13 @@ public class Hint {
      */
     public var enableInteractiveGestureForActions = true
         
+    /**
+    Only applies to alerts. Decide whether you want to display a textfield in the alert view. Default value for thhis parameter is false
+     */
+    public var hasTextField:((_ textField: UITextField)->Bool)? = { textField in
+        false
+    }
+    
     var hasActions:Bool {
         if self.actions.count > 0 {
             return true

@@ -1,3 +1,4 @@
+
 # SHSmarthint
 
 
@@ -20,7 +21,7 @@ import SmartHint
 SmartHint offers a convenient way to add callOut and banners to certain views inside you view hierarchy.
 To interact with the framework simply use the built in UIViewController extenion
 
-```swift 
+```swift
 self.sh
 ```
 
@@ -63,6 +64,28 @@ hint.buttonsColor = .systemGray6
 hint.message = "This is my banner's message"
 hint.animationStyle = .fromTop
 ```
+### Adding a textField in an AlertView
+
+Uniquely available to alerts, you can choose to display a textField inside the view. The following example shows how to tell SmartHint you need a textField and how to subscribe to its events.
+
+```swift
+let hint = Hint(style: .alert)
+hint.hasTextField = { [weak self] textField in
+   textField.delegate = self
+   return true
+}
+```
+
+The view you are assigning the delegate to must conform to UITextFieldDelegate. Do this like so:
+
+```swift
+extension YourViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        //Respond to changes
+    }
+}
+```
+
 ### Adding buttons
 
 To add a button you simply need to pass a completion handler to the addAction(_ action: HintAction) method. Let's say you need to add two buttons:
@@ -79,7 +102,7 @@ hint.addAction(HintAction(title: "second button", handler: {
 
 ### Modifying core properties
 
-Should you need to update some of HintViews core properties to fit the layout style to you app's, you cna do using the setDefaultValue(_ value: Any, forKey key: ConstantName) method provided by the SmartHint viewController's extension. 
+Should you need to update some of HintViews core properties to fit the layout style to you app's, you cna do using the setDefaultValue(_ value: Any, forKey key: ConstantName) method provided by the SmartHint viewController's extension.
 
 ```swift
 sh.setDefaultValue(CGFloat(12), forKey: .hintViewCornerRadius)

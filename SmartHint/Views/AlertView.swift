@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Combine
 class AlertView: UIView, HintView {
     
     // MARK: UI elements 􀯱
@@ -15,7 +15,7 @@ class AlertView: UIView, HintView {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fill
-        stack.spacing = 8
+        stack.spacing = K.getValue(for: .alertSpacing)
         return stack
     }()
     
@@ -53,9 +53,13 @@ class AlertView: UIView, HintView {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
+    
     // MARK: Data Management 􀤃
+    var cancellables = Set<AnyCancellable>()
+    static var shouldDisplayTextField = false
     var hint: Hint
     var didTapView: (() -> ())?
+    var distanceForOrigin: CGFloat = 0
     // MARK: View life cycle 􀐰
     init(_ hintBuilder: HintBuilder) {
         self.hint = hintBuilder.hint
@@ -74,6 +78,20 @@ class AlertView: UIView, HintView {
         setUpVStack()
         
         addTapGesture()
+        
+        NotificationCenter.Publisher.init(center: .default, name: UIResponder.keyboardWillShowNotification)
+            .sink { [unowned self] (notification) in
+                if let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                    self.distanceForOrigin = self.frame.origin.y
+                    self.frame.origin.y = frame.origin.y - 10 - self.frame.size.height
+                    self.distanceForOrigin -= self.frame.origin.y
+                }
+            }.store(in: &cancellables)
+        NotificationCenter.Publisher.init(center: .default, name: UIResponder.keyboardWillHideNotification)
+            .sink { [weak self] (notification) in
+                self?.frame.origin.y += (self?.distanceForOrigin ?? 0)
+            }.store(in: &cancellables)
+        
     }
     required init?(coder: NSCoder) {
         fatalError()
@@ -111,6 +129,10 @@ class AlertView: UIView, HintView {
         }
         if hint.message != nil {
             vStack.addArrangedSubview(messageLabel)
+        }
+        if AlertView.shouldDisplayTextField {
+            hint.textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            vStack.addArrangedSubview(hint.textField)
         }
         if hint.hasActions {
             vStack.addArrangedSubview(collectionView)
@@ -171,6 +193,7 @@ extension AlertView {
         var messageHeight:CGFloat = 0
         var collectionViewHeight: CGFloat = 0
         var titleHeight: CGFloat = 0
+        var textFieldHeight: CGFloat = 0
         
         instance.titleLabel.frame = CGRect(x: 0, y: 0, width: alertWidth, height: CGFloat.infinity)
         instance.titleLabel.text = hint.title
@@ -183,20 +206,32 @@ extension AlertView {
         if hint.message != nil {
             messageHeight = CGFloat(instance.messageLabel.calculateMaxLines())*instance.messageLabel.font.lineHeight
         }
+
+        if (hint.hasTextField?(hint.textField) ?? false) {
+            textFieldHeight = 50
+            shouldDisplayTextField = true
+        }else{
+            shouldDisplayTextField = false
+        }
         
         if hint.hasActions {
             collectionViewHeight = CGFloat(hint.numberOfActions * 45 - 5)
         }
         let imageHeight:CGFloat = hint.image == nil ? 0 : 50
-        let height = messageHeight + titleHeight + (10 + 10) + collectionViewHeight + imageHeight
+        let height = messageHeight + titleHeight + (10 + 10) + collectionViewHeight + imageHeight + textFieldHeight
         
         
         let numberOfItems = (hint.title != nil ? 1 : 0) +
                             (hint.message != nil ? 1 : 0) +
                             (hint.image != nil ? 1 : 0) +
-                            (hint.hasActions ? 1 : 0)
-        let margins: CGFloat = CGFloat(8 * (numberOfItems - 1))
+                            (hint.hasActions ? 1 : 0) +
+                            (textFieldHeight > 0 ? 1 : 0)
+        let margins: CGFloat = K.getValue(for: .alertSpacing) * CGFloat((numberOfItems - 1))
         
         return height + margins
     }
+}
+
+extension AlertView {
+    
 }

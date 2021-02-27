@@ -58,23 +58,35 @@ class ViewController: UIViewController {
     func addYellowBanner() {
         sh.setDefaultValue(CGFloat(12), forKey: .hintViewCornerRadius)
         sh.setDefaultValue(CGFloat(8), forKey: .buttonsCornerRadius)
+        sh.setDefaultValue(CGFloat(300), forKey: .alertWidth)
+        sh.setDefaultValue(CGFloat(20), forKey: .alertSpacing)
+        
+        guard let target = navigationController?.navigationBar else {return}
         let hint = Hint(style: .alert)
         hint.backgroundColor = .white
         hint.buttonsColor = .systemGray6
-//        hint.image = UIImage(systemName: "checkmark.circle.fill")
-        hint.title = "Recette ajoutée au menu en cours"
-        hint.message = "Tu viens d'ajouter la recette à ton menu en cours. Retrouve là à tout moment dans l'éditeur."
+        
+        hint.hasTextField = { [weak self] textField in
+            textField.delegate = self
+            textField.placeholder = "adresse email"
+            return true
+        }
+        hint.title = "Alert"
+        hint.message = "This is my banner's message"
         hint.animationStyle = .fromTop
-        hint.addAction(HintAction(title: "voir", handler: {
-            self.sh.dismissAllHints(animated: true)
-            self.addBannerWithButton()
+        hint.addAction(HintAction(title: "changer le mot de passe", handler: {
+            //Do something when the first buttn gets tapped
         }))
-//        hint.addAction(HintAction(title: "test", handler: {
-//            self.sh.dismissAllHints(animated: true)
-//            self.addBannerWithButton()
-//        }))
-        sh.addHint(hint: hint, at: .zero)
+        sh.addHint(hint: hint, to: target)
     }
-    
+    //"Hey you've just created a yellow banner with buttons"
 }
 
+extension ViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        //
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
+}
