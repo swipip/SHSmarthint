@@ -15,7 +15,7 @@ SmartHint is much easier to implement than standard UIKit equivalents, much more
 Add the framework to your project with the following command.
 
 ```ruby
-pod 'SmartHint', '~> 1.0.1'
+pod 'SmartHint', '~> 1.0.3'
 ```
 
 ## How to use SH core features
@@ -98,13 +98,14 @@ To add a button you simply need to pass a completion handler to the addAction(_ 
 
 ```swift
 let hint = Hint(style: .banner(.bottom))
-hint.addAction(HintAction(title: "first button", handler: {
-    //Do something when the first buttn gets tapped
+hint.addAction(HintAction(title: "first button", handler: { hint in
+    //Do something when the first button gets tapped
 }))
-hint.addAction(HintAction(title: "second button", handler: {
+hint.addAction(HintAction(title: "second button", handler: { hint in
     //Do something when the second button gets tapped
 }))
 ```
+Note that in the callback you get access to the current associated hint object. This is useful is you need to access specific parameters of the hint such as the optional textfield of an AlertView for instance
 
 ### Modifying core properties
 
