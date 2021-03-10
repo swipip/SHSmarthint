@@ -39,14 +39,15 @@ internal class Callout: UIView, HintView {
         if count == 0 {
             height = 0
         }else if count == 2 || count == 1{
-            height = 50
+            height = K.getValue(for: .buttonsHeight) + 10
         }else{
             if !triangleOnTop {
                 collectionView.contentInset.bottom = 6
             }else{
                 collectionView.contentInset.top = 6
             }
-            height = CGFloat(50 + (45) * (hint.actions.count - 1))
+            let baseHeight:CGFloat = K.getValue(for: .buttonsHeight)
+            height = baseHeight + 10 + (baseHeight + 5) * CGFloat((hint.actions.count - 1))
         }
         return height
     }
@@ -221,10 +222,10 @@ extension Callout: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         }else{
             width = collectionView.frame.width - 10
         }
-        return CGSize(width: width, height: 40)
+        return CGSize(width: width, height: K.getValue(for: .buttonsHeight))
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        hint.actions[indexPath.row].handler?()
+        hint.actions[indexPath.row].handler?(hint)
     }
     
 }

@@ -10,9 +10,9 @@ import Foundation
 public class HintAction {
     var identifier: String = UUID().uuidString
     var title: String?
-    var handler: (()->Void)?
+    var handler: ((Hint)->Void)?
     
-    public init(title: String? = nil, handler: (() -> Void)? = nil) {
+    public init(title: String? = nil, handler: ((Hint) -> Void)? = nil) {
         self.title = title
         self.handler = handler
     }

@@ -62,7 +62,7 @@ class CalloutsController: UIViewController {
     }
     func addCalloutTo(_ view: UIView) {
         let hint = Hint(style: .callout(.triangle),message: "Test")
-        hint.addAction(HintAction(title: "voir", handler: { [weak self] in
+        hint.addAction(HintAction(title: "voir", handler: { [weak self] _ in
             self?.sh.dismissAllHints(animated: true)
         }))
         hint.backgroundColor = .systemIndigo

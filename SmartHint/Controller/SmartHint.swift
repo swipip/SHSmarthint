@@ -352,9 +352,10 @@ public class SmartHint {
     }
     
     public func dismissAllHints(animated: Bool) {
-        SmartHint.instances.forEach { (hint) in
-            guard let view = hint.hintView else {return}
-            hint.dismissHint(view,animated: animated) { [weak self] in
+        SmartHint.instances.forEach { (instance) in
+            guard let view = instance.hintView else {return}
+            view.hint.textField.resignFirstResponder()
+            instance.dismissHint(view,animated: animated) { [weak self] in
                 self?.removeHint(self)
             }
         }

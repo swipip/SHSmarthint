@@ -65,7 +65,7 @@ public enum AnimationStyle {
 
 public class Hint {
     
-    lazy var textField: UITextField = {
+    private lazy var _textField: UITextField = {
         let field = UITextField()
         field.tintColor = self.textColor
         field.backgroundColor = self.buttonsColor
@@ -74,6 +74,15 @@ public class Hint {
         field.layer.cornerRadius = K.getValue(for: .buttonsCornerRadius)
         return field
     }()
+    
+    /**
+     The  textField which can get displayed in an AlertView.
+     
+     If you want to display a textfield inside an AlertView use the hasTextField property's closure.
+     */
+    public var textField: UITextField {
+        return _textField
+    }
     
     var style: HintStyle = .callout(.triangle)
     
@@ -123,7 +132,7 @@ public class Hint {
      Only apply to banners. Banners can hide their buttons and only reveal them upon a drag down on the view. Set this value to false if you want to see button by default.
      */
     public var enableInteractiveGestureForActions = true
-        
+       
     /**
     Only applies to alerts. Decide whether you want to display a textfield in the alert view. The callback gives you access to the textField on which you can assign a delegate .Default value for thhis parameter is false
      */
@@ -149,12 +158,13 @@ public class Hint {
     }
     
     var height: CGFloat {
+        let buttonBaseHeight:CGFloat = K.getValue(for: .buttonsHeight)
         if actions.count == 0 {
             return self.size.height
         }else if actions.count == 2{
-            return self.size.height + (enableInteractiveGestureForActions ? 0 : 50)
+            return self.size.height + (enableInteractiveGestureForActions ? 0 : buttonBaseHeight + 10)
         }else{
-            return self.size.height + (enableInteractiveGestureForActions ? 0 : CGFloat(actions.count - 1) * 45 + 50)
+            return self.size.height + (enableInteractiveGestureForActions ? 0 : CGFloat(actions.count - 1) * (buttonBaseHeight + 5) + (buttonBaseHeight + 10))
         }
     }
     

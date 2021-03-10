@@ -150,8 +150,8 @@ class AlertView: UIView, HintView {
         
         NSLayoutConstraint.activate(
             [childView.leadingAnchor.constraint(equalTo: mView.leadingAnchor, constant: 10),
-             childView.topAnchor.constraint(equalTo: mView.topAnchor, constant: 10),
-             childView.bottomAnchor.constraint(equalTo: mView.bottomAnchor,constant: -10),
+             childView.topAnchor.constraint(equalTo: mView.topAnchor, constant: K.getValue(for: .alertSpacing)),
+             childView.bottomAnchor.constraint(equalTo: mView.bottomAnchor,constant: -K.getValue(for: .alertSpacing)),
              childView.trailingAnchor.constraint(equalTo: mView.trailingAnchor,constant: -10)]
         )
         
@@ -172,10 +172,10 @@ extension AlertView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
-        return CGSize(width: width, height: 40)
+        return CGSize(width: width, height: K.getValue(for: .buttonsHeight))
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        hint.actions[indexPath.item].handler?()
+        hint.actions[indexPath.item].handler?(hint)
     }
 }
 extension AlertView: UIGestureRecognizerDelegate {
@@ -217,10 +217,11 @@ extension AlertView {
         }
         
         if hint.hasActions {
-            collectionViewHeight = CGFloat(hint.numberOfActions * 45 - 5)
+            let buttonHeight: CGFloat = K.getValue(for: .buttonsHeight) + 5
+            collectionViewHeight = CGFloat(hint.numberOfActions) * buttonHeight - 5
         }
         let imageHeight:CGFloat = hint.image == nil ? 0 : 50
-        let height = messageHeight + titleHeight + (10 + 10) + collectionViewHeight + imageHeight + textFieldHeight
+        let height = messageHeight + titleHeight + (K.getValue(for: .alertSpacing) * 2) + collectionViewHeight + imageHeight + textFieldHeight
         
         
         let numberOfItems = (hint.title != nil ? 1 : 0) +

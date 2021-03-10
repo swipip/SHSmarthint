@@ -55,14 +55,15 @@ class BannerView: UIView, HintView, UIGestureRecognizerDelegate {
 
     var collectionViewHeight:CGFloat {
         let count = hint.actions.count
+        let baseHeight:CGFloat = K.getValue(for: .buttonsHeight)
         var height: CGFloat = 0
         if count == 2 {
-            height = 50
+            height = baseHeight + 10
         }else{
             if hint.actions.count > 2 {
                 collectionView.contentInset.bottom = 6
             }
-            height = CGFloat(50 + (45) * (hint.actions.count - 1))
+            height = baseHeight + 10 + (baseHeight + 5) * CGFloat((hint.actions.count - 1))
         }
         return hint.hasActions ? height : 0
     }
@@ -219,7 +220,8 @@ class BannerView: UIView, HintView, UIGestureRecognizerDelegate {
     func addImageViewIfNeeded(_ hint: Hint) {
         if let image = hint.image {
             imageView.image = image
-            imageViewWidthConstraint?.constant = min(40,frame.height * 0.5)
+            let frameHeight = frame.height - collectionViewHeight
+            imageViewWidthConstraint?.constant = min(40,frameHeight * 0.5)
         }
     }
     
@@ -252,7 +254,9 @@ class BannerView: UIView, HintView, UIGestureRecognizerDelegate {
         
         childView.translatesAutoresizingMaskIntoConstraints = false
         
-        let yOffSet:CGFloat = (hint.hasActions && hint.enableInteractiveGestureForActions == false) ? -20 : 0
+        let yOffSet:CGFloat = (hint.hasActions && hint.enableInteractiveGestureForActions == false) ?
+            -K.getValue(for: .buttonsHeight)/2 :
+            0
         
         NSLayoutConstraint.activate(
             [childView.leadingAnchor.constraint(equalTo: mView.leadingAnchor, constant: 10),
@@ -319,7 +323,7 @@ extension BannerView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let action = hint.actions[indexPath.item]
-        action.handler?()
+        action.handler?(hint)
     }
     
 }

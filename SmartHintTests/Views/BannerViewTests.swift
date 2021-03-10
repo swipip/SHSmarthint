@@ -14,7 +14,7 @@ class BannerViewTests: XCTestCase {
     lazy var builder = HintBuilder(hint: hint, hintRect: CGRect(x: 0, y: 0, width: 100, height: 100), pointerHorizontalPosition: 50)
     
     func test_MemoryLeak() {
-        hint.actions.append(HintAction(title: "", handler: {
+        hint.actions.append(HintAction(title: "", handler: { _ in
             //
         }))
         let sut = BannerView(builder: builder)
@@ -59,7 +59,7 @@ class BannerViewTests: XCTestCase {
     }
     
     func test_CollectionViewShouldAppear() {
-        hint.addAction(HintAction(title: "ok", handler: {}))
+        hint.addAction(HintAction(title: "ok", handler: {_ in}))
         
         let sut = BannerView(builder: builder)
         
@@ -171,7 +171,7 @@ class BannerViewTests: XCTestCase {
     }
     
     func test_NumberOfButtons() {
-        hint.addAction(HintAction(title: "message", handler: {}))
+        hint.addAction(HintAction(title: "message", handler: {_ in}))
         let sut = BannerView(builder: builder)
         XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), 1)
     }
