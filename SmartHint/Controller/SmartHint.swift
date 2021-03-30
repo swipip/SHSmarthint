@@ -29,7 +29,7 @@ public class SmartHint {
     var hintView: HintView?
     private (set) var hint: Hint?
     private var hintTapped:(()->())?
-    private let animationSpeed: Double = K.getValue(for: .showAnimationSpeed)
+    
     // MARK: Hint view life cycle
     
     private func addModalLayerIfNeeded(_ completion: @escaping()->()) {
@@ -59,24 +59,32 @@ public class SmartHint {
             view.alpha = 1
             return}
         let offset: CGPoint =  CGPoint(x: view.frame.width + hint.marginFromView, y: view.frame.height)
+        var duration: TimeInterval = 0.3
         switch hint.animationStyle {
         case .noAnimation:
             view.alpha = 1
-        case .fade:
-            UIView.animate(withDuration: animationSpeed) {
+        case .fade(let timing):
+            UIView.animate(withDuration: timing) {
                 view.alpha = 1
             }
-        case .slideLeft:
+        case .slideLeft(let timing):
+            duration = timing
             view.transform = CGAffineTransform(translationX: -offset.x, y: 0)
-        case .slideRight:
+        case .slideRight(let timing):
+            duration = timing
             view.transform = CGAffineTransform(translationX: +offset.x, y: 0)
-        case .fromTop:
+        case .fromTop(let timing):
+            duration = timing
             view.transform = CGAffineTransform(translationX: 0, y: -offset.y)
-        case .fromBottom:
+        case .fromBottom(let timing):
+            duration = timing
             view.transform = CGAffineTransform(translationX: 0, y: +offset.y)
         }
         
-        UIView.animate(withDuration: animationSpeed) {
+        UIView.animate(withDuration: duration,
+                       delay: 0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 0.3) {
             view.transform = .identity
             view.alpha = 1
         }
@@ -87,24 +95,29 @@ public class SmartHint {
             removeHint(self)
             self.modalController?.dismiss(animated: false, completion: nil)
         }else{
+            var duration: TimeInterval = 0.3
             if let hint = hint {
                 var offset:CGPoint = .zero
                 let style = enforceStyle == nil ? hint.animationStyle : enforceStyle
                 switch style {
-                case .fromTop:
+                case .fromTop(let timing):
+                    duration = timing
                     offset = CGPoint(x: 0, y: -(hint.size.height + hint.marginFromView))
-                case .fromBottom:
+                case .fromBottom(let timing):
+                    duration = timing
                     offset = CGPoint(x: 0, y: (hint.size.height + hint.marginFromView))
-                case .slideLeft:
+                case .slideLeft(let timing):
+                    duration = timing
                     offset = CGPoint(x: -(view.frame.width + hint.marginFromView), y: 0)
-                case .slideRight:
+                case .slideRight(let timing):
+                    duration = timing
                     offset = CGPoint(x: (view.frame.width + hint.marginFromView), y: 0)
                 case .noAnimation:
                     view.alpha = 0
                     self.modalController?.dismiss(animated: false, completion: nil)
                     completion?()
                 default:
-                    UIView.animate(withDuration: animationSpeed) {
+                    UIView.animate(withDuration: duration) {
                         view.alpha = 0
                     } completion: { (_) in
                         self.modalController?.dismiss(animated: false, completion: nil)
@@ -113,7 +126,7 @@ public class SmartHint {
                     return
                 }
                 
-                UIView.animate(withDuration: animationSpeed) {
+                UIView.animate(withDuration: duration) {
                     view.transform = CGAffineTransform(translationX: offset.x, y: offset.y)
                     if delayAlpha == false {
                         view.alpha = 0
@@ -125,7 +138,7 @@ public class SmartHint {
                     }
                 }
                 if delayAlpha {
-                    UIView.animate(withDuration: animationSpeed, delay: 0.2) {
+                    UIView.animate(withDuration: duration, delay: 0.2) {
                         view.alpha = 0
                     } completion: { _ in
                         self.modalController?.dismiss(animated: false, completion: nil)

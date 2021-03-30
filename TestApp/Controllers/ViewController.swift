@@ -27,8 +27,8 @@ class ViewController: UIViewController {
     }
     @objc func tapHandler() {
 //        addBannerWithButton()
-//        addYellowBanner()
-        addAlert()
+        addYellowBanner()
+//        addAlert()
     }
     
     func addBanner() {
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     func addBannerWithButton() {
         guard let targetView = navigationController?.navigationBar else {return}
         let hint = Hint(style: .banner(.bottom), message: "what kind of prototyping /design software do you use for your drawings for iOS such as those above? Does one exist that allows you")
-        hint.animationStyle = .fromTop
+        hint.animationStyle = .fromTop(0.3)
         hint.textColor = .white
         hint.timeOut = 5
         hint.size.height = 70
@@ -76,8 +76,8 @@ class ViewController: UIViewController {
         hint.textColor = .white
         hint.backgroundColor = .systemPink
         hint.isModal = true
-        hint.animationStyle = .fromTop
-        hint.enableInteractiveGestureForActions = false
+        hint.animationStyle = .fromTop(0.5)
+        hint.enableInteractiveGestureForActions = true
         sh.addHint(hint: hint, at: CGPoint(x: 0, y: 50))
     }
     func addAlert() {
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
         }
         hint.isModal = true
         hint.message = "Mot de passe oublié"
-        hint.animationStyle = .fade
+        hint.animationStyle = .fromBottom(0.5)
         hint.addAction(HintAction(title: "changer le mot de passe", handler: { hint in
             self.sh.dismissAllHints(animated: true)
             self.pushCalloutsController()

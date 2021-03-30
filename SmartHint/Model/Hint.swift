@@ -38,27 +38,27 @@ public enum HintStyle: Hashable {
         }
     }
 }
-
+///The available animation styles. You must pass an animation duration as associated value.
 public enum AnimationStyle {
-    case fade
-    case slideLeft
-    case slideRight
-    case fromTop
-    case fromBottom
+    case fade(Double)
+    case slideLeft(Double)
+    case slideRight(Double)
+    case fromTop(Double)
+    case fromBottom(Double)
     case noAnimation
     
     var reversed: AnimationStyle {
         switch self {
-        case .fade, .noAnimation:
+        case .fade(_), .noAnimation:
             return .noAnimation
-        case .slideLeft:
-            return .slideRight
-        case .slideRight:
-            return .slideLeft
-        case .fromTop:
-            return .fromBottom
-        case .fromBottom:
-            return .fromTop
+        case .slideLeft(let duration):
+            return .slideRight(duration)
+        case .slideRight(let duration):
+            return .slideLeft(duration)
+        case .fromTop(let duration):
+            return .fromBottom(duration)
+        case .fromBottom(let duration):
+            return .fromTop(duration)
         }
     }
 }
@@ -92,7 +92,7 @@ public class Hint {
     /**
      The entry and exit animation style. Exit style if the invert of the enry style. Ex: if you choose from top as an entry animation, the view will be dismissed sliding upward.
      */
-    public var animationStyle: AnimationStyle = .fade
+    public var animationStyle: AnimationStyle = .fade(0.3)
     
     /**
      Actions available with you hint view. Adding an action adds a button in the view. One button takes the entire with, two buttons the width is halved and three actions or more the buttons simply get stacked

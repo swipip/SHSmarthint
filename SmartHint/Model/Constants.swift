@@ -12,7 +12,6 @@ public enum ConstantName {
     case buttonsTitleColor
     case hintViewCornerRadius
     case interactionAnimationSpeed
-    case showAnimationSpeed
     case alertWidth
     case alertSpacing
     case messageFont
@@ -26,7 +25,6 @@ struct K {
         .buttonsTitleColor:UIColor.label,
         .hintViewCornerRadius:CGFloat(5),
         .interactionAnimationSpeed:Double(0.2),
-        .showAnimationSpeed:Double(0.3),
         .alertWidth:CGFloat(260),
         .alertSpacing:CGFloat(10),
         .messageFont:UIFont.systemFont(ofSize: 17,weight: .regular),
