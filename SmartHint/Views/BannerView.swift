@@ -220,7 +220,7 @@ class BannerView: UIView, HintView, UIGestureRecognizerDelegate {
     func addImageViewIfNeeded(_ hint: Hint) {
         if let image = hint.image {
             imageView.image = image
-            let frameHeight = frame.height - collectionViewHeight
+            let frameHeight = frame.height - (collectionView.alpha == 0 ? 0 : collectionViewHeight)
             imageViewWidthConstraint?.constant = min(40,frameHeight * 0.5)
         }
     }
@@ -266,7 +266,7 @@ class BannerView: UIView, HintView, UIGestureRecognizerDelegate {
         imageViewCenterYConstraint = childView.centerYAnchor.constraint(equalTo: mView.centerYAnchor, constant: yOffSet)
         imageViewCenterYConstraint?.isActive = true
         
-        imageViewWidthConstraint = childView.widthAnchor.constraint(equalToConstant: frame.height * 0)
+        imageViewWidthConstraint = childView.widthAnchor.constraint(equalToConstant: 0)
         imageViewWidthConstraint?.isActive = true
     }
     

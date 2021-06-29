@@ -75,6 +75,8 @@ public class Hint {
         return field
     }()
     
+    var id: String?
+    
     /**
      The  textField which can get displayed in an AlertView.
      

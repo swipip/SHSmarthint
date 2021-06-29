@@ -10,6 +10,8 @@ import SmartHint
 
 class ViewController: UIViewController {
 
+    weak var hint: Hint?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,8 +24,20 @@ class ViewController: UIViewController {
         sh.setDefaultValue(CGFloat(8), forKey: .buttonsCornerRadius)
         sh.setDefaultValue(CGFloat(300), forKey: .alertWidth)
         sh.setDefaultValue(CGFloat(20), forKey: .alertSpacing)
-        sh.setDefaultValue(CGFloat(50), forKey: .buttonsHeight)
+        sh.setDefaultValue(CGFloat(40), forKey: .buttonsHeight)
         
+        let button = UIButton()
+        button.frame = CGRect(x: 20, y: 300, width: 200, height: 35)
+        button.backgroundColor = .systemTeal
+        button.layer.cornerRadius = 5
+        button.setTitle("tap me", for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        button.center = view.center
+        view.addSubview(button)
+        
+    }
+    @objc func buttonPressed() {
+        sh.forceCompletionOf(hint)
     }
     @objc func tapHandler() {
 //        addBannerWithButton()
@@ -65,20 +79,21 @@ class ViewController: UIViewController {
     func addYellowBanner() {
         let hint = Hint(style: .banner(.bottom))
         hint.message = "Hey this is a modal banner !"
-        hint.addAction(HintAction(title: "Understood", handler: { _ in
+        hint.addAction(HintAction(title: "Understood") { _ in
             self.sh.dismissAllHints(animated: true)
-        }))
-        hint.addAction(HintAction(title: "Tell me more", handler: { _ in
-            self.sh.dismissAllHints(animated: true)
-        }))
+        })
         hint.image = UIImage(systemName: "info.circle.fill")
         hint.buttonsColor = UIColor.white.withAlphaComponent(0.3)
         hint.textColor = .white
-        hint.backgroundColor = .systemPink
-        hint.isModal = true
-        hint.animationStyle = .fromTop(0.5)
+        hint.backgroundColor = [.systemPink, .systemBlue, .systemTeal, .systemRed, .systemYellow][Int.random(in: 0...4)]
+        hint.isModal = false
+        hint.animationStyle = .fromTop(0.3)
         hint.enableInteractiveGestureForActions = true
-        sh.addHint(hint: hint, at: CGPoint(x: 0, y: 50))
+        
+        self.hint = hint
+        sh.addHint(hint: hint, at: CGPoint(x: 0, y: 50)) {
+            print("hint complete")
+        }
     }
     func addAlert() {
         
@@ -95,7 +110,7 @@ class ViewController: UIViewController {
         }
         hint.isModal = true
         hint.message = "Mot de passe oublié"
-        hint.animationStyle = .fromBottom(0.5)
+        hint.animationStyle = .fromBottom(0.3)
         hint.addAction(HintAction(title: "changer le mot de passe", handler: { hint in
             self.sh.dismissAllHints(animated: true)
             self.pushCalloutsController()

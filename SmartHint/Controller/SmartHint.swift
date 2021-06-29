@@ -58,6 +58,7 @@ public class SmartHint {
         guard animated == true else {
             view.alpha = 1
             return}
+        
         let offset: CGPoint =  CGPoint(x: view.frame.width + hint.marginFromView, y: view.frame.height)
         var duration: TimeInterval = 0.3
         switch hint.animationStyle {
@@ -82,7 +83,7 @@ public class SmartHint {
         }
         
         UIView.animate(withDuration: duration,
-                       delay: 0,
+                       delay: duration * 0.3/0.7,
                        usingSpringWithDamping: 0.7,
                        initialSpringVelocity: 0.3) {
             view.transform = .identity
@@ -90,7 +91,7 @@ public class SmartHint {
         }
     }
     
-    private func dismissHint(_ view: HintView, animated: Bool,enforceStyle: AnimationStyle? = nil, delayAlpha: Bool = false,_ completion:(()->())? = nil) {
+    private func dismissHint(_ view: HintView, animated: Bool, enforceStyle: AnimationStyle? = nil, delayAlpha: Bool = false,_ completion:(()->())? = nil) {
         if animated == false {
             removeHint(self)
             self.modalController?.dismiss(animated: false, completion: nil)
@@ -244,6 +245,7 @@ public class SmartHint {
     }
     
     private func setUpHint(hint: Hint, to target: UIView?, at targetPoint: CGPoint?) {
+        hint.id = self.identifier
         self.hint = hint
         
         var view: HintView?
@@ -339,6 +341,7 @@ public class SmartHint {
     private func removeHint(_ instance: SmartHint?) {
         instance?.hintView?.removeFromSuperview()
         instance?.hintView = nil
+        instance?.hint = nil
         SmartHint.instances.removeAll { [weak instance] (shInstance) -> Bool in
             if shInstance.identifier == instance?.identifier {
                 return true
@@ -349,6 +352,17 @@ public class SmartHint {
     }
     
     // MARK: Interface
+    ///Forces the completion handler of a given hint object causing the view disappear.
+    public func forceCompletionOf(_ hint: Hint?) {
+        if let instance = SmartHint.instances.first(where: {$0.identifier == hint?.id}) {
+            instance.hintTapped?()
+            if let view = instance.hintView {
+                instance.dismissHint(view, animated: true) {
+                    self.removeHint(self)
+                }
+            }
+        }
+    }
     
     public func setDefaultValue(_ value: Any, forKey key: ConstantName) {
         K.setValue(value, forKey: key)
