@@ -15,7 +15,7 @@ SmartHint is much easier to implement than standard UIKit equivalents, much more
 Add the framework to your project with the following command.
 
 ```ruby
-pod 'SmartHint', '~> 1.0.3'
+pod 'SmartHint', '~> 1.0.5'
 ```
 
 ## How to use SH core features
